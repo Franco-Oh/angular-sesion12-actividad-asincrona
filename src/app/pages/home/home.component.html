@@ -1,1 +1,47 @@
-<p>home works!</p>
+<div class="m-5 grid justify-items-center">
+    <form [formGroup]="formLogin" (submit)="send()" class="border-4 border-sky-300 m-5 grid w-full sm:w-1/2 lg:w-1/3 p-8">
+        <h1 class="text-sky-500 text-3xl font-semibold mb-8 text-center">Formulario de Contacto</h1>
+        <div *ngIf="mensaje" class="mb-5">
+            <p class="border-4 border-teal-800 bg-lime-200 text-center font-semibold py-3">¡Gracias por comunicarte con nosotros!</p>
+        </div>
+        <div class="mb-4">
+            <label for="nombre" class="text-gray-500">Nombre: </label>
+            <span appValidacion *ngIf="this.formLogin.get('nombre')?.invalid">
+                <span *ngIf="this.formLogin.get('nombre')?.dirty"> (Debe tener mínimo 6 caracteres)</span>
+            </span><br>
+            <input type="text" id="nombre" formControlName="nombre" class="border-2 border-white border-b-gray-500 w-full" [(ngModel)]="predefinido.nombre">
+        </div>
+        <div class="mb-4">
+            <label for="email" class="text-gray-500">Email: </label>
+            <span appValidacion *ngIf="this.formLogin.get('email')?.invalid">
+                <span *ngIf="this.formLogin.get('email')?.dirty"> (Debe ser un correo)</span>
+            </span><br>
+            <input id="email" type="text" formControlName="email" class="border-2 border-white border-b-gray-500 w-full"  [(ngModel)]="predefinido.email">
+        </div>
+        <div class="mb-4">
+            <label for="telef" class="text-gray-500">Telefono: </label>
+            <span appValidacion *ngIf="this.formLogin.get('telefono')?.invalid">
+                <span *ngIf="this.formLogin.get('telefono')?.dirty"> (Debe tener solo números y mínimo 9)</span>
+            </span><br>
+            <input id="telef" type="text" formControlName="telefono" class="border-2 border-white border-b-gray-500 w-full"  [(ngModel)]="predefinido.telefono">
+        </div>
+        <div class="mb-4">
+            <label for="asunto" class="text-gray-500">Asunto: </label>
+            <span appValidacion *ngIf="this.formLogin.get('asunto')?.invalid">
+                <span *ngIf="this.formLogin.get('asunto')?.dirty"> (Debe tener un asunto)</span>
+            </span><br>
+            <input id="asunto" type="text" formControlName="asunto" class="border-2 border-white border-b-gray-500 w-full"  [(ngModel)]="predefinido.asunto">
+        </div>
+        <div class="mb-4">
+            <label for="msg" class="text-gray-500">Mensaje: </label>
+            <span appValidacion *ngIf="this.formLogin.get('msg')?.invalid">
+                <span *ngIf="this.formLogin.get('msg')?.dirty"> (Debe tener un mensaje)</span>
+            </span><br>
+            <textarea name="" id="msg" cols="23" rows="1" formControlName="msg" class="border-2 border-white border-b-gray-500 w-full"  [(ngModel)]="predefinido.msg"></textarea>
+        </div>
+        <div class="m-8 grid justify-items-center">
+            <button *ngIf="formLogin.invalid" [disabled]="formLogin.invalid" class="bg-blue-500 text-white font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed">Enviar</button>
+            <button *ngIf="formLogin.valid" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Enviar</button>
+        </div>
+    </form>
+</div>
